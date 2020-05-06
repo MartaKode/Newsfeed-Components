@@ -33,3 +33,43 @@ let menuItems = [
   Step 6: add the menu component to the DOM.
   
 */
+
+
+function makeMenu(menuArray){
+//Step 1
+const menu = document.createElement('div')
+const menuUl = document.createElement('ul')
+
+menu.appendChild(menuUl)
+
+menu.classList.add('menu')
+
+//Step 2
+menuArray.forEach(item => {
+
+  const li = document.createElement('li')
+  li.textContent = item
+  menuUl.appendChild(li)
+
+})
+
+//Step 3
+const menuBtn = document.querySelector('.menu-button')
+
+//Step 4 
+menuBtn.addEventListener('click', event => {
+menu.classList.toggle('menu--open')
+})
+
+//Step 5
+//console.log(menu)
+return menu
+}
+
+//Step 6
+const ourMenu = makeMenu(menuItems)
+document.querySelector('body').appendChild(ourMenu)
+
+
+//---------------Playing with Animations----------
+gsap.to(".menu-button", {duration: 3, rotation: 360, scale: 1.5});

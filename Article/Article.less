@@ -16,6 +16,7 @@
     font-size: 28px;
     padding: 0;
     margin: 15px 0 0;
+    
   }
 
   .date {
@@ -29,6 +30,31 @@
     right: 10px;
   }
 
+  @keyframes pulse {
+    0%, 100% {
+      background-color: green;
+      color:white;
+    }
+    50% {
+      background-color: white;
+     color:black;
+    }
+  }
+
+  @keyframes nudge {
+    0%, 100% {
+      transform: translate(0, 0);
+    }
+    
+    50% {
+      transform: translate(150px, 0);
+    }
+    
+    80% {
+      transform: translate(-150px, 0);
+    }
+  }
+
   .expandButton {
     position: absolute;
     bottom: 0;
@@ -38,6 +64,12 @@
     cursor: pointer;
     transform: translate(-50%);
     background-color: white;
+ // -------------Adding animation Stuff ---------------------
+    animation: 
+    pulse 3s ease infinite alternate, 
+    nudge 10s linear infinite alternate;
+
+    //---------------end of animation-----------
   }
 }
 

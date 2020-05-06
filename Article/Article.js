@@ -85,11 +85,21 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  //Adding more articles:
+  {
+    title: 'tfhfdjgjff',
+    date: 'tsgfsjfjdfhg',
+    firstParagraph: `hfdhdrfthjfdghdfghdfhg `,
+
+    secondParagraph: `fdhgsfdhdsfghd `,
+
+    thirdParagraph: `dfgjmboiadmhgklsdrmhlkmdhs.`
   }
 ];
 
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
-  
+
   <div class="article">
     <h2>{title of the article}</h2>
     <p class="date">{date of the article}</p>
@@ -112,3 +122,76 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+function makeArticle(articleAttrbs){
+//Step 1
+const {title, date, firstParagraph, secondParagraph, thirdParagraph} = articleAttrbs
+
+  const article = document.createElement('div')
+  const articleTitle = document.createElement('h2')
+  const articleDate = document.createElement('p')
+  const articleParagraph1 = document.createElement('p') 
+  const articleParagraph2 = document.createElement('p') 
+  const articleParagraph3 = document.createElement('p') 
+  const articleExpButton = document.createElement('span')
+
+
+  article.appendChild(articleTitle)
+  article.appendChild(articleDate)
+  article.appendChild(articleParagraph1)
+  article.appendChild(articleParagraph2)
+  article.appendChild(articleParagraph3)
+  article.appendChild(articleExpButton)
+
+
+  article.classList.add('article')
+  articleDate.classList.add('date')
+  articleExpButton.classList.add('expandButton')
+
+  articleTitle.textContent = title
+  articleDate.textContent = date
+  articleParagraph1.textContent = firstParagraph
+  articleParagraph2.textContent =secondParagraph
+  articleParagraph3.textContent = thirdParagraph
+
+  //added text to the invisible expand button
+  articleExpButton.textContent ='CLICK'
+
+  //Step 2 -- Event Listener to ExpButton
+
+  articleExpButton.addEventListener('click', event => {
+    article.classList.toggle('article-open')
+  })
+
+  //Step 3
+return article
+
+}
+
+ //const theArticle = makeArticle({title: 'ttt', date: '383', firstParagraph: 'dff', secondParagraph:'dsdsdds', thirdParagraph:'dsds'})
+// console.log(theArticle)
+// document.querySelector('body').appendChild(theArticle)
+
+
+//Step 4
+
+const mappedData = data.map( (item) => {
+const article = makeArticle(item)
+return document.querySelector('.articles').appendChild(article)
+})
+
+
+//Step 5 
+
+
+const myArticle = makeArticle({title: 'It`s a me!' , date: 'May 6th is my mom`s b-day. That`s today!' , firstParagraph: 'It is a Wednesday' , secondParagraph: 'Finally warm outside' , thirdParagraph: 'Give ..me..a..break..' })
+
+mappedData.push(document.querySelector('.articles').appendChild(myArticle))
+//document.querySelector('.articles').appendChild(myArticle)
+
+
+//--------------------Playing with Animations----------------------
+gsap.to(".article h2", {duration: 3, rotationX: 360});
+gsap.from(".article p", {duration: 3, x: 300, opacity: 0, scale: 0.5});
+//gsap.to(".article .expandButton", {duration: 2, x: 300, ease: "bounce"});
+//gsap.to(".article h2", {duration: 3, rotation: 360, scale: 1});
