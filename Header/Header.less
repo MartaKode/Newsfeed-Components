@@ -10,8 +10,26 @@
   top: 0;
   z-index: 2;
 
+
+  @keyframes pulse2 {
+    0%, 100% {
+      background-color: green;
+      color:white;
+    }
+    50% {
+      background-color: red;
+     color:black;
+    }
+  }
+
+    animation: 
+    pulse2 20s ease infinite alternate, 
+    pulse2 20s linear infinite alternate;
+
   h1 {
     margin: 0;
     font-size: 48px;
   }
 }
+
+
